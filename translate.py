@@ -7,10 +7,18 @@ Created on Wed Apr 15 16:02:07 2020
 """
 
 from googletrans import Translator
+import requests
 
-def main():
+def googletrans():
     translator = Translator()
-    result = translator.translate("Jak się masz?", dest='de')
+    result = translator.translate("Jak się masz?", dest='pl')
     print(result.text)
 
-main()
+def piratetrans(text):
+    url = 'https://api.funtranslations.com/translate/pirate.json'
+    data = {'text': text}
+    
+    response = requests.post(url, data = data)
+    print(type(response.text))
+
+piratetrans('Hello, sir')
