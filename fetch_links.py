@@ -12,5 +12,16 @@ import urllib.request
 url = input("url: ")
 response = urllib.request.urlopen(url)
 
+data = response.read()
+doc = BeautifulSoup(data, 'parser')
+list = doc.find_all('ol')
+for li in list:
+    i = 1
+    list_items = li.find_all('li')
+    print('\n')
+    for lis in list_items:
+        print(str(i) +'. ' + lis.get_text())
+        i += 1
+
 
 
